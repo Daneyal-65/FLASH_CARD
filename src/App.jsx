@@ -8,7 +8,7 @@ import Default from "./pages/Default";
 import ShowCardData from "./components/ShowCardData";
 export default function App() {
   return (
-    <main className="bg-gradient-to-tr bg-red-50 to-white">
+    <main className="bg-gradient-to-tr bg-red-50 to-white min-h-screen">
       {/* route the pages using Browser router */}
       <BrowserRouter>
         <Header />

@@ -7,6 +7,7 @@ export const MyFlashCard = () => {
   const data = useSelector((state) => state.cardData); //get the data from redux store
   // toggle the cards styles based on user input
   const handleThreshold = () => {
+    // console.log(threshold);
     setThreshold(threshold === data.length ? 3 : data.length);
   };
 
