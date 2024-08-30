@@ -1,4 +1,5 @@
 const toBase64 = (file) => {
+  // file conversion to base 64 string for easy accessibility
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -7,3 +8,5 @@ const toBase64 = (file) => {
   });
 };
 export default toBase64;
+
+// https://flashcardgenrater.netlify.app/

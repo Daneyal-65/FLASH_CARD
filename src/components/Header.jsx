@@ -3,6 +3,7 @@ import { FaBolt } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 export default function Header() {
+  // static header component
   return (
     <div className="flex  items-start flex-col mb-8 p-2 ">
       <div
@@ -11,6 +12,7 @@ export default function Header() {
     to-white "
       >
         <div className="flex flex-1  items-center">
+          {/* using react-icons for logo  */}
           <span>
             <FaBolt size={30} color="red" />
           </span>
@@ -18,6 +20,7 @@ export default function Header() {
             Flash <strong className="text-red-600">~G</strong>
           </span>
         </div>
+        {/* login button */}
         <button
           className="bg-white text-red-700 w-16 md:w-24 h-8 md:h-10 text-center
          rounded-md hover:bg-red-600 transition-all hover:text-white hover:text-xl "
@@ -31,6 +34,7 @@ export default function Header() {
           CREATE FLASH CARD
         </h1>
         <div className="border-2 border-red-800 w-[100%]"></div>
+        {/* navigation  */}
         <ul
           className="flex gap-1 ml-2 list-none mb-3
       "

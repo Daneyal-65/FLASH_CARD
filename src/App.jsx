@@ -1,5 +1,5 @@
 import React from "react";
-// import { CreateFlashCard } from "./pages/CreateFlashCard";
+// import all pages
 import { CreateFlashCardPage } from "./pages/CreateFlashCardPage";
 import { MyFlashCard } from "./pages/MyFlashCard";
 import Header from "./components/Header";
@@ -9,6 +9,7 @@ import ShowCardData from "./components/ShowCardData";
 export default function App() {
   return (
     <main className="bg-gradient-to-tr bg-red-50 to-white">
+      {/* route the pages using Browser router */}
       <BrowserRouter>
         <Header />
         <Routes>

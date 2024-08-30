@@ -10,8 +10,9 @@ jest.mock(
   "../utils/Base64",
   () => (file) => Promise.resolve("data:image/png;base64,mockBase64String")
 );
-
+// testing createflashcardpage
 describe("CreateFlashCardPage", () => {
+  // mocking redux store
   const mockStore = configureStore([]);
   let store = mockStore([]);
   it("should submit the correct form data to Redux", async () => {
@@ -46,7 +47,7 @@ describe("CreateFlashCardPage", () => {
     });
 
     fireEvent.click(getByTestId("genrateCard"));
-
+    // check for all data should be stored and proper formatted as per required
     await waitFor(() => {
       const actions = store.getActions();
       expect(actions[0].type).toBe("cardInfo/setCardsData");

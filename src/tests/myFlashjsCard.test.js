@@ -4,14 +4,15 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import configureStore from "redux-mock-store";
 import { MyFlashCard } from "../pages/MyFlashCard";
-
+// moking redux store
 const mockStore = configureStore([]);
-
-describe("MyFlashCard Component", () => {
+// testing MyFlashCArd page =>
+describe("MyFlashCard page", () => {
   let store;
 
   beforeEach(() => {
     store = mockStore({
+      // dummy data for testing the behaviour
       cardData: [
         {
           groupname: "Group 1",
@@ -43,7 +44,7 @@ describe("MyFlashCard Component", () => {
         </Router>
       </Provider>
     );
-
+    //  make sure the the ui is same by the length of card
     expect(screen.getAllByText(/View Cards/i)).toHaveLength(3);
   });
 

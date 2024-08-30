@@ -1,3 +1,5 @@
+// style component for upload button
+
 export const UploadStyle = {
   position: "absolute",
   left: "0",

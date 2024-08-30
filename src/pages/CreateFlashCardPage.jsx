@@ -8,9 +8,9 @@ import { UploadStyle } from "../utils/ButtonStyle";
 
 export const CreateFlashCardPage = () => {
   const inputRef = useRef(null);
-  const [uploadedImg, setUploadedImg] = useState(null);
+  const [uploadedImg, setUploadedImg] = useState(null); // image uploading
   const dispatch = useDispatch();
-
+  // define initial values for form (inputs ,textarea,imagefiles)
   const initialValues = {
     groupname: "",
     description: "",
@@ -22,8 +22,9 @@ export const CreateFlashCardPage = () => {
       },
     ],
   };
-
+  // submit handler
   const handleSubmit = async (values, { resetForm }) => {
+    // formatt the image for redux store
     const groupImgBase64 = uploadedImg
       ? await toBase64(uploadedImg).catch(() => null)
       : null;
@@ -35,33 +36,36 @@ export const CreateFlashCardPage = () => {
           : null,
       }))
     );
-
+    // data that is going to stored
     const formData = {
       groupname: values.groupname,
       description: values.description,
       groupImg: groupImgBase64,
       terms,
     };
-
+    // cleanup all states after form submition
     dispatch(setCardsData(formData));
     resetForm();
     setUploadedImg(null);
   };
-
+  // handle the edit for terms when user clicks on edit
+  // using useRef hook
   const handleEdit = () => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
   };
-
+  // Formil implementation
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      {/* callback or fromik syntax */}
       {({ values, setFieldValue }) => (
         <Form className="h-screen flex flex-col items-center gap-4 md:gap-1">
           <div className="form flex flex-col gap-4 bg-gradient-to-t bg-gray-200 to-white shadow-md rounded-sm ">
             <div className="border-none flex flex-col gap-1 md:w-[40rem] lg:w-[62rem]">
               <div className="flex flex-row p-2 gap-1 w-full">
                 <div className="w-full">
+                  {/* input for Create group  */}
                   <label htmlFor="groupname" className="block">
                     Create Group*
                   </label>
@@ -78,6 +82,8 @@ export const CreateFlashCardPage = () => {
                 <div className="flex justify-center items-center w-full h-[4rem] ml-8 mt-2 gap-1">
                   <label className="flex items-center p-2 m-2 bg-white border-[#db3838] border rounded font-[1rem] transition-all relative overflow-hidden hover:border-[#9999] hover:bg-[#f0f0f0]">
                     <FaUpload className="mr-3 font-[1.2rem]" />
+                    {/* input for uploading group image  */}
+
                     <span>Upload Image</span>
                     <input
                       type="file"
@@ -88,6 +94,7 @@ export const CreateFlashCardPage = () => {
                     />
                   </label>
                   <span>
+                    {/* if image uploaded confirmation */}
                     {uploadedImg ? (
                       <FaCheckCircle data-testid="FaCheckCircle" />
                     ) : (
@@ -97,6 +104,8 @@ export const CreateFlashCardPage = () => {
                 </div>
               </div>
               <div className="flex flex-col px-2 pb-4">
+                {/* input for group description  */}
+
                 <label htmlFor="description">Add Description</label>
                 <Field
                   data-testid="description"
@@ -109,10 +118,11 @@ export const CreateFlashCardPage = () => {
               </div>
             </div>
           </div>
-
+          {/* use Field Array from formik for dynamic input changes  */}
           <FieldArray name="terms">
             {({ push, remove }) => (
               <div>
+                {/* based on dynamically changes update or loop the values for maintain the input changes */}
                 {values.terms.map((item, index) => (
                   <div
                     key={index}
@@ -122,6 +132,7 @@ export const CreateFlashCardPage = () => {
                       {index + 1}
                     </div>
                     <div className="flex flex-col w-full md:w-[20rem] px-2">
+                      {/* input for term */}
                       <label htmlFor={`terms.${index}.term_name`}>
                         Enter Term *
                       </label>
@@ -137,6 +148,8 @@ export const CreateFlashCardPage = () => {
                       />
                     </div>
                     <div className="flex flex-col w-full md:w-[20rem] px-2">
+                      {/* input for Definition */}
+
                       <label htmlFor={`terms.${index}.description`}>
                         Enter Definition*
                       </label>
@@ -151,6 +164,7 @@ export const CreateFlashCardPage = () => {
                       />
                     </div>
                     <div className="flex justify-center items-center h-16 ml-8 mb-4 md:m-12">
+                      {/* after image file uploded display on UI  */}
                       <label
                         className={`${
                           item.term_image
@@ -176,6 +190,8 @@ export const CreateFlashCardPage = () => {
                             <span className="text-gray-600">Select Image</span>
                           )}
                         </div>
+
+                        {/* file imput  */}
                         <input
                           alt="uploaded"
                           type="file"
@@ -190,6 +206,7 @@ export const CreateFlashCardPage = () => {
                         />
                       </label>
                       <div className="mt-6 ml-4 flex gap-2 md:flex-col">
+                        {/* edit button */}
                         <button
                           className="text-blue-600 cursor-pointer"
                           type="button"
@@ -197,6 +214,7 @@ export const CreateFlashCardPage = () => {
                         >
                           <FaEdit size={20} />
                         </button>
+                        {/* delete button */}
                         <button
                           type="button"
                           onClick={() => remove(index)}

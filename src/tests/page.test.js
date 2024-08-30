@@ -40,6 +40,7 @@ describe("CreateFlashCard", () => {
 
   test("renders the form elements", () => {
     renderComponent();
+    // test form elements
     expect(screen.getByLabelText(/Create Group/i)).toBeInTheDocument();
     expect(screen.getByText(/Upload Image/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Add Description/i)).toBeInTheDocument();

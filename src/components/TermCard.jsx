@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-const DisplayImage = ({
+const DisplayGroups = ({
   groupImg,
   groupName,
   description,
@@ -99,4 +99,4 @@ const DisplayImage = ({
   );
 };
 
-export default DisplayImage;
+export default DisplayGroups;

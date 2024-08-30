@@ -16,12 +16,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import useGeneratePdf from "../hooks/useGeneratePdf";
 
 const ShowCardData = () => {
-  const generatePdf = useGeneratePdf();
+  const generatePdf = useGeneratePdf(); //calling custom useGeneratePdf for making pdf from object or json
   const navigate = useNavigate();
-  const { index } = useParams();
+  // based on index get data from redux store
+  const { index } = useParams(); //index value from url
   const cardData = useSelector((state) => state.cardData[index]);
   const Data = useSelector((state) => state.cardData);
-  console.log(JSON.parse(localStorage.getItem("data")));
+  // console.log(JSON.parse(localStorage.getItem("data")));
+  // definig states using useSatate Hook;
   const [showData, setAndShowData] = useState(0);
   const [isModalOpen, setModalOpen] = useState(false);
   const [isCopy, setCopy] = useState(false);
@@ -36,6 +38,7 @@ const ShowCardData = () => {
   const handleNext = () => {
     setAndShowData((prev) => (prev === terms.length - 1 ? 0 : prev + 1));
   };
+  // copy function for copy the page link
   const handleCopy = () => {
     try {
       navigator.clipboard.writeText(window.location.href);
@@ -45,6 +48,7 @@ const ShowCardData = () => {
       console.log(ex);
     }
   };
+  // genrate pdf and downlod
   const handleGeneratePdf = () => {
     generatePdf(Data);
   };
