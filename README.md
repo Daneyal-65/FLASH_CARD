@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-This project was TailwindCss
+This project bulid with react , TailwindCss, formik and Redux 
 
 ### `npm start`
 
